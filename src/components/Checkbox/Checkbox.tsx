@@ -55,8 +55,8 @@ export default ({
           type="checkbox"
           checked={checked}
           onChange={(e) => {
-            onChanged(!value);
-            setChecked(!value);
+            onChanged(!checked);
+            setChecked(!checked);
           }}
         />
       </div>
