@@ -1,13 +1,15 @@
 import React from "react";
-import { Sidebar } from "./components/Sidebar";
 
+import { Connectionbar } from "./components/Connectionbar";
+import { Sidebar } from "./components/Sidebar";
 import { WrapperDiv } from "./components/WrapperDiv";
 
 const App = () => {
   return (
     <WrapperDiv>
       <Sidebar />
-      <div style={{ backgroundColor: "black", flex: 6 }}></div>
+      <div style={{ backgroundColor: "#2a2a2a", flex: 5 }}></div>
+      <Connectionbar />
     </WrapperDiv>
   );
 };
