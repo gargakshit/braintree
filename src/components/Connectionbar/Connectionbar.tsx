@@ -1,7 +1,6 @@
 import React from "react";
 
-import { Button } from "../Button";
-import { SidebarWrapper } from "../SidebarWrapper";
+import { Button, SidebarWrapper } from "../";
 
 export default () => {
   return (
