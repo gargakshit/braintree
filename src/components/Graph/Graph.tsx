@@ -4,6 +4,7 @@ import React, {
   useLayoutEffect,
   useCallback,
   useContext,
+  useEffect,
 } from "react";
 import { Graph } from "react-d3-graph";
 import styled from "styled-components";
@@ -34,6 +35,10 @@ export default observer(() => {
     window.addEventListener("resize", forceUpdate);
     return () => window.removeEventListener("resize", forceUpdate);
   }, []);
+
+  useEffect(() => {
+    forceUpdate();
+  }, [graphState.data]);
 
   return (
     <div

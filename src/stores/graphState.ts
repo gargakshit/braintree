@@ -37,13 +37,65 @@ class GraphState {
     await this.hydrateMetadata();
   }
 
-  @action async changeNodePosition(id: string, x: number, y: number) {
+  @action
+  async changeNodePosition(id: string, x: number, y: number) {
     const node = this.data.nodes.filter((node) => node.id === id)[0];
 
     node.x = x;
     node.y = y;
 
     this.saveMetadata();
+  }
+
+  @action
+  async addEdge(source: string, target: string) {
+    const newMetadata = Object.assign({}, this.data); // hack lol
+
+    newMetadata.links.push({ source: target, target: source });
+    newMetadata.links.push({ source, target });
+
+    await writeMetadata({
+      version: 1,
+      graphData: newMetadata,
+    });
+
+    await this.hydrateMetadata();
+  }
+
+  @action
+  async removeEdge(source: string, target: string) {
+    const newMetadata = Object.assign({}, this.data); // hack lol
+
+    const toRemove = [
+      ...newMetadata.links.filter(
+        (link) => link.source === source && link.target === target
+      ),
+      ...newMetadata.links.filter(
+        (link) => link.source === target && link.target === source
+      ),
+    ];
+
+    newMetadata.links = newMetadata.links.filter(
+      (link) => !toRemove.includes(link)
+    );
+
+    await writeMetadata({
+      version: 1,
+      graphData: newMetadata,
+    });
+
+    await this.hydrateMetadata();
+  }
+
+  @action
+  hasEdge(source: string, target: string): boolean {
+    return (
+      this.data.links.filter(
+        (link) =>
+          (link.source === source && link.target === target) ||
+          (link.source === target && link.target === source)
+      ).length !== 0
+    );
   }
 
   @action
