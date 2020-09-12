@@ -120,6 +120,12 @@ const FormatButton = styled.button`
   }
 `;
 
+const NameContainer = styled.p`
+  font-weight: bold;
+  padding-left: 8px;
+  padding-top: 6px;
+`;
+
 export default observer(() => {
   const editorState = useContext(EditorStateContext);
 
@@ -127,29 +133,32 @@ export default observer(() => {
     <>
       {editorState.currentFile === null && (
         <CenterWrapper>
-          <NoDataHead>No file selected</NoDataHead>
+          <NoDataHead>No note selected</NoDataHead>
         </CenterWrapper>
       )}
       {editorState.currentFile !== null && (
-        <ComponentWrapper>
-          <FormatButton
-            onClick={(e) => {
-              editorState.prettifyMarkdown();
-            }}
-          >
-            Prettify Markdown
-          </FormatButton>
-          <EditorTextArea
-            placeholder="# Add some markdown here"
-            value={editorState.currentMarkdown}
-            onChange={(e) => {
-              editorState.updateMarkdown(e.target.value);
-            }}
-          />
-          <EditorPreview
-            dangerouslySetInnerHTML={{ __html: editorState.currentHtml }}
-          />
-        </ComponentWrapper>
+        <>
+          <NameContainer>{editorState.currentFile.slice(0, -3)}</NameContainer>
+          <ComponentWrapper>
+            <FormatButton
+              onClick={(e) => {
+                editorState.prettifyMarkdown();
+              }}
+            >
+              Prettify Markdown
+            </FormatButton>
+            <EditorTextArea
+              placeholder="# Add some markdown here"
+              value={editorState.currentMarkdown}
+              onChange={(e) => {
+                editorState.updateMarkdown(e.target.value);
+              }}
+            />
+            <EditorPreview
+              dangerouslySetInnerHTML={{ __html: editorState.currentHtml }}
+            />
+          </ComponentWrapper>
+        </>
       )}
     </>
   );

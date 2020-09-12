@@ -10,13 +10,13 @@ import {
 } from "../../stores";
 
 const NoteNameContainer = styled.div<{ selected?: boolean }>`
-  font-weight: bold;
+  font-weight: ${(props) => (props.selected ? "bold" : 500)};
   font-size: 16px;
   padding-top: ${(props) => (props.selected ? "6px" : "4px")};
   padding-bottom: ${(props) => (props.selected ? "6px" : "4px")};
   padding-left: ${(props) => (props.selected ? "12px" : "0px")};
   background-color: ${(props) =>
-    props.selected ? "rgba(186, 186, 186, 0.36)" : "transparent"};
+    props.selected ? "rgba(186, 186, 186, 0.28)" : "transparent"};
   transition-duration: 500ms;
   transition-property: all;
   cursor: pointer;
