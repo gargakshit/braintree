@@ -1,7 +1,6 @@
 import path from "path";
 import { remote } from "electron";
 import {
-  promises as fs,
   existsSync,
   readFileSync,
   writeFileSync,

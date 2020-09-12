@@ -16,7 +16,7 @@ const NoteNameContainer = styled.div<{ selected?: boolean }>`
   padding-bottom: ${(props) => (props.selected ? "6px" : "4px")};
   padding-left: ${(props) => (props.selected ? "12px" : "0px")};
   background-color: ${(props) =>
-    props.selected ? "rgba(186, 186, 186, 0.28)" : "transparent"};
+  props.selected ? "rgba(186, 186, 186, 0.28)" : "transparent"};
   transition-duration: 500ms;
   transition-property: all;
   cursor: pointer;
@@ -42,12 +42,13 @@ export default observer(() => {
         Add a note
       </Button>
       <Divider />
-      {graphState.data.nodes.map((node) => (
+      {graphState.data.nodes.map((node, i) => (
         <NoteNameContainer
           selected={editorState.currentFile! === node.payload.fileName}
           onClick={(e) => {
             editorState.loadFile(node.payload.fileName);
           }}
+          key={`sidebar__${i}`}
         >
           {node.title}
         </NoteNameContainer>

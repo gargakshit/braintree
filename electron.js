@@ -17,6 +17,7 @@ const createWindow = () => {
     show: false,
     title: "BrainTree",
     frame: process.platform === "darwin",
+    titleBarStyle: process.platform === "darwin" ? "hiddenInset" : "default",
     minHeight: 700,
     minWidth: 1140,
     webPreferences: {
