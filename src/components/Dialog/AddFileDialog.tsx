@@ -99,6 +99,11 @@ const Divider = styled.div`
   margin-top: 16px;
 `;
 
+const ValidityMessage = styled.p`
+  color: #bb0000;
+  font-weight: bold;
+`;
+
 export default observer(() => {
   const dialogState = useContext(DialogStateContext);
   const editorState = useContext(EditorStateContext);
@@ -108,7 +113,10 @@ export default observer(() => {
   const [valid, setValid] = useState(false);
 
   useEffect(() => {
-    if (fname !== "") {
+    if (
+      fname !== "" &&
+      graphState.data.nodes.filter((node) => node.title === fname).length === 0
+    ) {
       setValid(true);
     } else {
       setValid(false);
@@ -128,6 +136,14 @@ export default observer(() => {
             }}
           />
           <Divider />
+          {!valid && fname !== "" && (
+            <>
+              <ValidityMessage>
+                A note with the same name already exists
+              </ValidityMessage>
+              <Divider />
+            </>
+          )}
           <div style={{ display: "flex" }}>
             <OKButton
               disabled={!valid}
