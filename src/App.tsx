@@ -2,6 +2,7 @@ import React from "react";
 
 import {
   Connectionbar,
+  Editor,
   EditorWrapper,
   GraphWrapper,
   MainWrapper,
@@ -15,7 +16,9 @@ const App = () => {
       <Sidebar />
       <MainWrapper>
         <GraphWrapper></GraphWrapper>
-        <EditorWrapper></EditorWrapper>
+        <EditorWrapper>
+          <Editor />
+        </EditorWrapper>
       </MainWrapper>
       <Connectionbar />
     </WrapperDiv>

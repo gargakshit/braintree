@@ -24,6 +24,11 @@ const createWindow = () => {
     },
   });
 
+  mainWindow.webContents.on("new-window", function (e, url) {
+    e.preventDefault();
+    require("electron").shell.openExternal(url);
+  });
+
   mainWindow.loadURL(
     isDev
       ? "http://localhost:3000"
