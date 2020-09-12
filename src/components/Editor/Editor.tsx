@@ -16,7 +16,6 @@ const EditorTextArea = styled.textarea`
   height: 100%;
   padding: 16px;
   box-sizing: border-box;
-  font-family: "Fira Code VF";
 
   &::selection {
     background-color: rgba(240, 240, 240, 0.24);
@@ -59,7 +58,6 @@ const EditorPreview = styled.div`
   height: 100%;
   padding: 16px;
   box-sizing: border-box;
-  font-family: "Fira Code VF";
   overflow: scroll;
 
   &::selection {
