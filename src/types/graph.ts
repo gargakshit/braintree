@@ -6,6 +6,8 @@ interface Node {
   id: string;
   title: string;
   payload: Payload;
+  x: number;
+  y: number;
 }
 
 interface Link {

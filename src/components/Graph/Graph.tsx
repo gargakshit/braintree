@@ -36,15 +36,6 @@ export default observer(() => {
     return () => window.removeEventListener("resize", forceUpdate);
   }, []);
 
-  const decorateGraphNodesWithInitialPositioning = (nodes: any) => {
-    return nodes.map((n: any) =>
-      Object.assign({}, n, {
-        x: n.x || Math.floor(Math.random() * 540),
-        y: n.y || Math.floor(Math.random() * 540),
-      })
-    );
-  };
-
   return (
     <div
       className="code"
@@ -59,9 +50,6 @@ export default observer(() => {
           id={"graph-id" + tick.toString()}
           data={{
             ...graphState.data,
-            nodes: decorateGraphNodesWithInitialPositioning(
-              graphState.data.nodes
-            ),
             focusedNodeId:
               editorState.currentFile === null
                 ? undefined
@@ -78,6 +66,9 @@ export default observer(() => {
               graphState.data.nodes.filter((node) => node.id === id)[0].payload
                 .fileName
             );
+          }}
+          onNodePositionChange={(id, x, y) => {
+            graphState.changeNodePosition(id, x, y);
           }}
         />
       )}

@@ -24,6 +24,8 @@ class GraphState {
         payload: {
           fileName: fname,
         },
+        x: Math.floor(Math.random() * 540),
+        y: Math.floor(Math.random() * 540),
       },
     ];
 
@@ -33,6 +35,15 @@ class GraphState {
     });
 
     await this.hydrateMetadata();
+  }
+
+  @action async changeNodePosition(id: string, x: number, y: number) {
+    const node = this.data.nodes.filter((node) => node.id === id)[0];
+
+    node.x = x;
+    node.y = y;
+
+    this.saveMetadata();
   }
 
   @action
