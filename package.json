@@ -5,13 +5,14 @@
   "homepage": "./",
   "main": "electron.js",
   "scripts": {
-    "start": "rescripts start",
-    "build": "rescripts build",
-    "test": "rescripts test",
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
     "eject": "react-scripts eject",
     "electron-dev": "concurrently \"cross-env BROWSER=none yarn start\" \"wait-on http://localhost:3000 && electron .\""
   },
   "dependencies": {
+    "@craco/craco": "^5.6.4",
     "@mapbox/rehype-prism": "^0.5.0",
     "custom-electron-titlebar": "^3.2.4",
     "d3": "5.16.0",
@@ -35,8 +36,6 @@
     "unified": "^9.2.0"
   },
   "devDependencies": {
-    "@rescripts/cli": "^0.0.14",
-    "@rescripts/rescript-env": "^0.0.12",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
@@ -54,9 +53,6 @@
     "typescript": "~3.7.2",
     "wait-on": "^5.2.0"
   },
-  "rescripts": [
-    "env"
-  ],
   "eslintConfig": {
     "extends": "react-app"
   },
