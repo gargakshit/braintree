@@ -1,4 +1,15 @@
+html,
 body {
   margin: 0;
-  padding: 16px;
+  padding: 0;
+  height: 100vh;
+  width: 100%;
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  margin-top: -21px; /* Hack, idk why it has top padding lool */
 }

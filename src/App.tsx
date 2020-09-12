@@ -1,10 +1,12 @@
 import React from "react";
 
+import { WrapperDiv } from "./components/WrapperDiv";
+
 const App = () => {
   return (
-    <div>
-      <h1>Hello World</h1>
-    </div>
+    <WrapperDiv>
+      <h1>Hello</h1>
+    </WrapperDiv>
   );
 };
 
