@@ -12,3 +12,7 @@ body {
   margin: 0;
   padding: 0;
 }
+
+.container-after-titlebar {
+  overflow: hidden !important;
+}

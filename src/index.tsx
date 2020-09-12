@@ -3,6 +3,8 @@ import ReactDOM from "react-dom";
 
 import App from "./App";
 
+import "katex/dist/katex.min.css";
+
 import "./index.css";
 import "./styles/links.scss";
 import "./styles/fonts.scss";
