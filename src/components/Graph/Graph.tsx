@@ -8,7 +8,7 @@ import React, {
 import { Graph } from "react-d3-graph";
 import styled from "styled-components";
 import { getGraphConfiguration } from "../../config/graphConfig";
-import { GraphStateContext } from "../../stores";
+import { EditorStateContext, GraphStateContext } from "../../stores";
 
 const NoDataHead = styled.h1`
   opacity: 0.48;
@@ -25,6 +25,7 @@ export default observer(() => {
   const [focus, setFocus] = useState<string | undefined>(undefined);
   const [tick, setTick] = useState(0);
   const graphState = useContext(GraphStateContext);
+  const editorState = useContext(EditorStateContext);
 
   const forceUpdate = useCallback(() => {
     setTick((tick) => tick + 1);
@@ -34,6 +35,15 @@ export default observer(() => {
     window.addEventListener("resize", forceUpdate);
     return () => window.removeEventListener("resize", forceUpdate);
   }, []);
+
+  const decorateGraphNodesWithInitialPositioning = (nodes: any) => {
+    return nodes.map((n: any) =>
+      Object.assign({}, n, {
+        x: n.x || Math.floor(Math.random() * 540),
+        y: n.y || Math.floor(Math.random() * 540),
+      })
+    );
+  };
 
   return (
     <div
@@ -49,14 +59,25 @@ export default observer(() => {
           id={"graph-id" + tick.toString()}
           data={{
             ...graphState.data,
-            focusedNodeId: focus,
+            nodes: decorateGraphNodesWithInitialPositioning(
+              graphState.data.nodes
+            ),
+            focusedNodeId:
+              editorState.currentFile === null
+                ? undefined
+                : graphState.data.nodes.filter(
+                    (node) => node.payload.fileName === editorState.currentFile
+                  )[0].id,
           }}
           config={getGraphConfiguration(
             (window.innerWidth * 5) / 7,
             window.innerHeight / 2
           )}
           onClickNode={(id) => {
-            setFocus(id);
+            editorState.loadFile(
+              graphState.data.nodes.filter((node) => node.id === id)[0].payload
+                .fileName
+            );
           }}
         />
       )}

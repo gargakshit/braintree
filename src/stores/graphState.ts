@@ -13,15 +13,26 @@ class GraphState {
   async addFile(name: string) {
     const fname = `${name}.md`;
     const id = random({ length: 48, type: "hex" });
-    this.data.nodes.push({
-      id,
-      title: name,
-      payload: {
-        fileName: fname,
+
+    const newMetadata = Object.assign({}, this.data); // hack lol
+
+    newMetadata.nodes = [
+      ...newMetadata.nodes,
+      {
+        id,
+        title: name,
+        payload: {
+          fileName: fname,
+        },
       },
+    ];
+
+    await writeMetadata({
+      version: 1,
+      graphData: newMetadata,
     });
 
-    await this.saveMetadata();
+    await this.hydrateMetadata();
   }
 
   @action

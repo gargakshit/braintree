@@ -132,8 +132,8 @@ export default observer(() => {
             <OKButton
               disabled={!valid}
               onClick={async (e) => {
-                await editorState.createFile(fname);
                 await graphState.addFile(fname);
+                await editorState.createFile(fname);
                 dialogState.addDialogOpen = false;
                 setFname("");
               }}

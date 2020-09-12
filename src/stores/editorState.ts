@@ -26,6 +26,7 @@ class EditorState {
   @action
   updateMarkdown(markdown: string) {
     this.currentMarkdown = markdown;
+    this.debounceAndSave();
 
     unified()
       .use(remark)
@@ -48,6 +49,15 @@ class EditorState {
       parser: "markdown",
       plugins: [prettierMarkdown],
     });
+
+    this.debounceAndSave();
+  }
+
+  @action
+  debounceAndSave() {
+    setTimeout(() => {
+      this.save();
+    }, 500);
   }
 
   @action
@@ -55,7 +65,7 @@ class EditorState {
     if (this.currentFile !== null) {
       await writeFile(this.currentFile, this.currentMarkdown);
     } else {
-      throw "Error: Writing to a null file";
+      throw new Error("Error: Writing to a null file");
     }
   }
 
@@ -63,7 +73,7 @@ class EditorState {
   async loadFile(name: string) {
     try {
       this.currentFile = name;
-      this.currentMarkdown = await readFile(name);
+      this.updateMarkdown(await readFile(name));
     } catch (e) {
       console.error(e);
       console.log("Reading from a non-existant file");

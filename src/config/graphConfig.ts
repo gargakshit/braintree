@@ -4,7 +4,7 @@ export const getGraphConfiguration: (
   width: number,
   height: number
 ) => graphConfig = (width, height) => ({
-  automaticRearrangeAfterDropNode: true,
+  automaticRearrangeAfterDropNode: false,
   collapsible: false,
   directed: false,
   focusAnimationDuration: 0.75,
