@@ -43,12 +43,14 @@
   font-style: normal;
 }
 
-body {
-  font-family: "Fira Code", monospace;
+body,
+html {
+  font-family: "Fira Code";
 }
 
 @supports (font-variation-settings: normal) {
-  body {
-    font-family: "Fira Code VF", monospace;
+  body,
+  html {
+    font-family: "Fira Code VF";
   }
 }

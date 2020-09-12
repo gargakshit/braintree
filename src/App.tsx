@@ -1,11 +1,13 @@
 import React from "react";
+import { Sidebar } from "./components/Sidebar";
 
 import { WrapperDiv } from "./components/WrapperDiv";
 
 const App = () => {
   return (
     <WrapperDiv>
-      <h1>Hello</h1>
+      <Sidebar />
+      <div style={{ backgroundColor: "black", flex: 6 }}></div>
     </WrapperDiv>
   );
 };
