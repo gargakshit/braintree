@@ -8,7 +8,7 @@ export const getGraphConfiguration: (
   collapsible: false,
   directed: false,
   focusAnimationDuration: 0.75,
-  focusZoom: 1.8,
+  focusZoom: 1.5,
   height,
   highlightDegree: 0,
   highlightOpacity: 1,

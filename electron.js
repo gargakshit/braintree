@@ -1,3 +1,4 @@
+// const {} = require("glasstron");
 const { app, BrowserWindow } = require("electron");
 const path = require("path");
 const isDev = require("electron-is-dev");
@@ -14,7 +15,7 @@ const createWindow = () => {
   mainWindow = new BrowserWindow({
     width: 1260,
     height: 740,
-    show: false,
+    show: true,
     title: "BrainTree",
     frame: process.platform === "darwin",
     titleBarStyle: process.platform === "darwin" ? "hiddenInset" : "default",
@@ -25,7 +26,10 @@ const createWindow = () => {
       enableRemoteModule: true,
       preload: path.join(__dirname, "preload.js"),
     },
+    transparent: true,
   });
+
+  mainWindow.setVibrancy("fullscreen-ui");
 
   mainWindow.webContents.on("new-window", function (e, url) {
     e.preventDefault();

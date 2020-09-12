@@ -7,7 +7,7 @@ import { EditorStateContext } from "../../stores";
 const EditorTextArea = styled.textarea`
   border: none transparent;
   outline: none;
-  background-color: #212121;
+  background-color: transparent;
   flex: 1;
   resize: none;
   color: #f0f0f0;
@@ -49,7 +49,6 @@ const ComponentWrapper = styled.div`
 const EditorPreview = styled.div`
   border: none transparent;
   outline: none;
-  background-color: #212121;
   flex: 1;
   resize: none;
   color: #f0f0f0;

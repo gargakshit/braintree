@@ -39,7 +39,7 @@ export default observer(() => {
     <div
       className="code"
       style={{
-        backgroundColor: "#2a2a2a",
+        backgroundColor: "rgba(24, 24, 24, 0.7)",
         height: "100%",
         width: "100%",
       }}
@@ -49,20 +49,21 @@ export default observer(() => {
           id={"graph-id" + tick.toString()}
           data={{
             ...graphState.data,
-            focusedNodeId: editorState.currentFile === null
-              ? undefined
-              : graphState.data.nodes.filter(
-                (node) => node.payload.fileName === editorState.currentFile,
-              )[0].id,
+            focusedNodeId:
+              editorState.currentFile === null
+                ? undefined
+                : graphState.data.nodes.filter(
+                    (node) => node.payload.fileName === editorState.currentFile
+                  )[0].id,
           }}
           config={getGraphConfiguration(
             (window.innerWidth * 5) / 7,
-            window.innerHeight / 2,
+            window.innerHeight / 2
           )}
           onClickNode={(id) => {
             editorState.loadFile(
               graphState.data.nodes.filter((node) => node.id === id)[0].payload
-                .fileName,
+                .fileName
             );
           }}
           onNodePositionChange={(id, x, y) => {
