@@ -1,11 +1,21 @@
-import React from "react";
+import { observer } from "mobx-react";
+import React, { useContext } from "react";
 
 import { Button, SidebarWrapper } from "../";
+import { DialogStateContext } from "../../stores";
 
-export default () => {
+export default observer(() => {
+  const dialogState = useContext(DialogStateContext);
+
   return (
     <SidebarWrapper>
-      <Button>Add a note</Button>
+      <Button
+        onClick={(e) => {
+          dialogState.addDialogOpen = true;
+        }}
+      >
+        Add a note
+      </Button>
     </SidebarWrapper>
   );
-};
+});

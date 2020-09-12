@@ -1,6 +1,8 @@
-import React from "react";
+import { observer } from "mobx-react";
+import React, { useContext, useEffect } from "react";
 
 import {
+  AddFileDialog,
   Connectionbar,
   Editor,
   EditorWrapper,
@@ -10,10 +12,18 @@ import {
   Sidebar,
   WrapperDiv,
 } from "./components";
+import { GraphStateContext } from "./stores";
 
 const App = () => {
+  const graphState = useContext(GraphStateContext);
+
+  useEffect(() => {
+    graphState.hydrateMetadata();
+  }, []);
+
   return (
     <WrapperDiv>
+      <AddFileDialog />
       <Sidebar />
       <MainWrapper>
         <GraphWrapper>
@@ -28,4 +38,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default observer(App);

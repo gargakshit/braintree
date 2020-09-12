@@ -83,6 +83,17 @@ const EditorPreview = styled.div`
   }
 `;
 
+const NoDataHead = styled.h1`
+  opacity: 0.48;
+`;
+
+const CenterWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+`;
+
 const FormatButton = styled.button`
   position: absolute;
   bottom: 12px;
@@ -113,24 +124,33 @@ export default observer(() => {
   const editorState = useContext(EditorStateContext);
 
   return (
-    <ComponentWrapper>
-      <FormatButton
-        onClick={(e) => {
-          editorState.prettifyMarkdown();
-        }}
-      >
-        Prettify Markdown
-      </FormatButton>
-      <EditorTextArea
-        placeholder="# Add some markdown here"
-        value={editorState.currentMarkdown}
-        onChange={(e) => {
-          editorState.updateMarkdown(e.target.value);
-        }}
-      />
-      <EditorPreview
-        dangerouslySetInnerHTML={{ __html: editorState.currentHtml }}
-      />
-    </ComponentWrapper>
+    <>
+      {editorState.currentFile === null && (
+        <CenterWrapper>
+          <NoDataHead>No file selected</NoDataHead>
+        </CenterWrapper>
+      )}
+      {editorState.currentFile !== null && (
+        <ComponentWrapper>
+          <FormatButton
+            onClick={(e) => {
+              editorState.prettifyMarkdown();
+            }}
+          >
+            Prettify Markdown
+          </FormatButton>
+          <EditorTextArea
+            placeholder="# Add some markdown here"
+            value={editorState.currentMarkdown}
+            onChange={(e) => {
+              editorState.updateMarkdown(e.target.value);
+            }}
+          />
+          <EditorPreview
+            dangerouslySetInnerHTML={{ __html: editorState.currentHtml }}
+          />
+        </ComponentWrapper>
+      )}
+    </>
   );
 });

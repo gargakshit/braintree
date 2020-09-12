@@ -11,6 +11,8 @@ import stringify from "rehype-stringify";
 import prettier from "prettier/standalone";
 import prettierMarkdown from "prettier/parser-markdown";
 
+import { readFile, writeFile } from "../utils/path";
+
 class EditorState {
   @observable
   currentFile: string | null = null;
@@ -22,7 +24,7 @@ class EditorState {
   currentHtml: string = "";
 
   @action
-  updateMarkdown(markdown: string): void {
+  updateMarkdown(markdown: string) {
     this.currentMarkdown = markdown;
 
     unified()
@@ -41,11 +43,38 @@ class EditorState {
   }
 
   @action
-  prettifyMarkdown(): void {
+  prettifyMarkdown() {
     this.currentMarkdown = prettier.format(this.currentMarkdown, {
       parser: "markdown",
       plugins: [prettierMarkdown],
     });
+  }
+
+  @action
+  async save() {
+    if (this.currentFile !== null) {
+      await writeFile(this.currentFile, this.currentMarkdown);
+    } else {
+      throw "Error: Writing to a null file";
+    }
+  }
+
+  @action
+  async loadFile(name: string) {
+    try {
+      this.currentFile = name;
+      this.currentMarkdown = await readFile(name);
+    } catch (e) {
+      console.error(e);
+      console.log("Reading from a non-existant file");
+    }
+  }
+
+  @action
+  async createFile(name: string) {
+    const fname = `${name}.md`;
+    await writeFile(fname, "");
+    await this.loadFile(fname);
   }
 }
 

@@ -1,5 +1,6 @@
 export { Button } from "./Button";
 export { Connectionbar } from "./Connectionbar";
+export { AddFileDialog, Dialog } from "./Dialog";
 export { Editor } from "./Editor";
 export { EditorWrapper } from "./EditorWrapper";
 export { Graph } from "./Graph";
