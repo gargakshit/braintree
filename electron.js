@@ -1,4 +1,3 @@
-const acrylic = require("electron-acrylic-window");
 const { app, BrowserWindow, shell } = require("electron");
 const path = require("path");
 const isDev = require("electron-is-dev");
@@ -33,6 +32,7 @@ const createWindow = () => {
     mainWindow = new BrowserWindow(config);
     mainWindow.setVibrancy("fullscreen-ui");
   } else {
+    const acrylic = require("electron-acrylic-window");
     mainWindow = new acrylic.BrowserWindow({
       ...config,
       vibrancy: "dark",
