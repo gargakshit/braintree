@@ -115,7 +115,9 @@ export default observer(() => {
   useEffect(() => {
     if (
       fname !== "" &&
-      graphState.data.nodes.filter((node) => node.title === fname).length === 0
+      graphState.data.nodes.filter((node) =>
+          node.title.toLowerCase() === fname.toLowerCase()
+        ).length === 0
     ) {
       setValid(true);
     } else {
