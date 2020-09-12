@@ -8,6 +8,8 @@ import remark2rehype from "remark-rehype";
 import rehypeKatex from "rehype-katex";
 import rehypePrism from "@mapbox/rehype-prism";
 import stringify from "rehype-stringify";
+import prettier from "prettier/standalone";
+import prettierMarkdown from "prettier/parser-markdown";
 
 class EditorState {
   @observable
@@ -36,6 +38,14 @@ class EditorState {
           this.currentHtml = String(html);
         }
       });
+  }
+
+  @action
+  prettifyMarkdown(): void {
+    this.currentMarkdown = prettier.format(this.currentMarkdown, {
+      parser: "markdown",
+      plugins: [prettierMarkdown],
+    });
   }
 }
 
