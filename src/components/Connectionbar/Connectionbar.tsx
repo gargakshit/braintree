@@ -21,59 +21,86 @@ const ModalContainer = observer(styled.div`
     0 10px 10px -5px rgba(0, 0, 0, 0.04);
 `);
 
+const NoteNameContainer = styled.div`
+  font-weight: 500;
+  font-size: 16px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  transition-duration: 500ms;
+  transition-property: all;
+  cursor: pointer;
+  border-radius: 4px;
+`;
+
+const Divider = styled.div`
+  margin-top: 16px;
+`;
+
 export default observer(() => {
   const graphState = useContext(GraphStateContext);
   const editorState = useContext(EditorStateContext);
 
   return (
     <SidebarWrapper>
-      <Popup
-        trigger={
-          <Button disabled={editorState.currentFile === null}>
-            Add a connection
-          </Button>
-        }
-        modal
-      >
-        {(close: () => {}) => {
-          const current = graphState.data.nodes.filter(
-            (node) => node.payload.fileName === editorState.currentFile
-          )[0];
-
-          return (
-            <ModalContainer>
-              <h3>Select the nodes to connect to</h3>
-              <div style={{ height: `${window.innerHeight / 2 - 48}px` }}>
-                {graphState.data.nodes
-                  .filter(
-                    (node) => node.payload.fileName !== editorState.currentFile
-                  )
-                  .map((node, i) => (
-                    <Checkbox
-                      name={node.title}
-                      value={graphState.hasEdge(current.id, node.id)}
-                      onChanged={(e) => {
-                        if (e) {
-                          graphState.addEdge(current.id, node.id);
-                        } else {
-                          graphState.removeEdge(current.id, node.id);
-                        }
-                      }}
-                      key={`modal___connections___${i}`}
-                    />
-                  ))}
-              </div>
-              <Button
-                onClick={() => {
-                  close();
-                }}
-              >
-                Close
+      {editorState.currentFile !== null && (
+        <>
+          <Popup
+            trigger={
+              <Button disabled={editorState.currentFile === null}>
+                Add a connection
               </Button>
-            </ModalContainer>
-          );
-        }}
-      </Popup>
+            }
+            modal
+          >
+            {(close: () => {}) => {
+              const current = graphState.data.nodes.filter(
+                (node) => node.payload.fileName === editorState.currentFile
+              )[0];
+
+              return (
+                <ModalContainer>
+                  <h3>Select the nodes to connect to</h3>
+                  <div
+                    style={{
+                      height: `${window.innerHeight / 2 - 48}px`,
+                      overflow: "scroll",
+                    }}
+                  >
+                    {graphState.data.nodes
+                      .filter(
+                        (node) =>
+                          node.payload.fileName !== editorState.currentFile
+                      )
+                      .map((node, i) => (
+                        <Checkbox
+                          name={node.title}
+                          value={graphState.hasEdge(current.id, node.id)}
+                          onChanged={(e) => {
+                            if (e) {
+                              graphState.addEdge(current.id, node.id);
+                            } else {
+                              graphState.removeEdge(current.id, node.id);
+                            }
+                          }}
+                          key={`modal___connections___${i}`}
+                        />
+                      ))}
+                    <div style={{ height: "20px" }} />
+                  </div>
+                  <Button
+                    onClick={() => {
+                      close();
+                    }}
+                  >
+                    Close
+                  </Button>
+                </ModalContainer>
+              );
+            }}
+          </Popup>
+          <Divider />
+        </>
+      )}
     </SidebarWrapper>
   );
 });
