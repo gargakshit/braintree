@@ -16,9 +16,11 @@ const createWindow = () => {
     height: 700,
     show: false,
     title: "BrainTree",
+    frame: process.platform === "darwin",
     webPreferences: {
       nodeIntegration: true,
       enableRemoteModule: true,
+      preload: path.join(__dirname, "preload.js"),
     },
   });
 

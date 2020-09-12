@@ -12,4 +12,13 @@ export default styled.button`
   font-size: 16px;
   font-family: "Fira Code VF";
   letter-spacing: 0.64px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  transition-duration: 500ms;
+  transition-property: all;
+  cursor: pointer;
+  &:hover {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    transform: scale(1.05);
+  }
 `;
