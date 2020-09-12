@@ -16,11 +16,11 @@ const NoteNameContainer = styled.div<{ selected?: boolean }>`
   padding-bottom: ${(props) => (props.selected ? "6px" : "4px")};
   padding-left: ${(props) => (props.selected ? "12px" : "0px")};
   background-color: ${(props) =>
-  props.selected ? "rgba(186, 186, 186, 0.28)" : "transparent"};
+    props.selected ? "rgba(186, 186, 186, 0.28)" : "transparent"};
   transition-duration: 500ms;
   transition-property: all;
   cursor: pointer;
-  border-radius: 8px;
+  border-radius: 4px;
 `;
 
 const Divider = styled.div`
