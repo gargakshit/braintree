@@ -12,11 +12,13 @@ let mainWindow;
 
 const createWindow = () => {
   mainWindow = new BrowserWindow({
-    width: 1024,
-    height: 700,
+    width: 1260,
+    height: 740,
     show: false,
     title: "BrainTree",
     frame: process.platform === "darwin",
+    minHeight: 700,
+    minWidth: 1140,
     webPreferences: {
       nodeIntegration: true,
       enableRemoteModule: true,
