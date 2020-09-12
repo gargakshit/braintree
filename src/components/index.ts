@@ -2,6 +2,7 @@ export { Button } from "./Button";
 export { Connectionbar } from "./Connectionbar";
 export { Editor } from "./Editor";
 export { EditorWrapper } from "./EditorWrapper";
+export { Graph } from "./Graph";
 export { GraphWrapper } from "./GraphWrapper";
 export { MainWrapper } from "./MainWrapper";
 export { Sidebar } from "./Sidebar";

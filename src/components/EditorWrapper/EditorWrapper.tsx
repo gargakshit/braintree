@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
 export default styled.div`
-  height: 60%;
+  height: 50%;
   background-color: #212121;
 `;

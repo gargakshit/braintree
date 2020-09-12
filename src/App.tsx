@@ -4,6 +4,7 @@ import {
   Connectionbar,
   Editor,
   EditorWrapper,
+  Graph,
   GraphWrapper,
   MainWrapper,
   Sidebar,
@@ -15,7 +16,9 @@ const App = () => {
     <WrapperDiv>
       <Sidebar />
       <MainWrapper>
-        <GraphWrapper></GraphWrapper>
+        <GraphWrapper>
+          <Graph />
+        </GraphWrapper>
         <EditorWrapper>
           <Editor />
         </EditorWrapper>
