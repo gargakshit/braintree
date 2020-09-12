@@ -1,5 +1,5 @@
-// const {} = require("glasstron");
-const { app, BrowserWindow } = require("electron");
+const acrylic = require("electron-acrylic-window");
+const { app, BrowserWindow, shell } = require("electron");
 const path = require("path");
 const isDev = require("electron-is-dev");
 const contextMenu = require("electron-context-menu");
@@ -12,7 +12,7 @@ contextMenu({
 let mainWindow;
 
 const createWindow = () => {
-  mainWindow = new BrowserWindow({
+  const config = {
     width: 1260,
     height: 740,
     show: true,
@@ -27,13 +27,21 @@ const createWindow = () => {
       preload: path.join(__dirname, "preload.js"),
     },
     transparent: true,
-  });
+  };
 
-  mainWindow.setVibrancy("fullscreen-ui");
+  if (process.platform === "darwin") {
+    mainWindow = new BrowserWindow(config);
+    mainWindow.setVibrancy("fullscreen-ui");
+  } else {
+    mainWindow = new acrylic.BrowserWindow({
+      ...config,
+      vibrancy: "dark",
+    });
+  }
 
   mainWindow.webContents.on("new-window", function (e, url) {
     e.preventDefault();
-    require("electron").shell.openExternal(url);
+    shell.openExternal(url);
   });
 
   mainWindow.loadURL(
