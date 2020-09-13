@@ -2,7 +2,7 @@ import { GraphConfiguration, GraphData } from "react-d3-graph";
 
 import { Payload } from "./payload";
 
-interface Node {
+export interface Node {
   id: string;
   title: string;
   payload: Payload;
@@ -10,7 +10,7 @@ interface Node {
   y: number;
 }
 
-interface Link {
+export interface Link {
   source: string;
   target: string;
 }

@@ -1,11 +1,12 @@
 import { observer } from "mobx-react";
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import Popup from "reactjs-popup";
 import styled from "styled-components";
 
 import { Button, SidebarWrapper } from "../";
 import { Checkbox } from "../Checkbox";
 import { GraphStateContext, EditorStateContext } from "../../stores";
+import { Node as NodeType } from "../../types/graph";
 
 const ModalContainer = observer(styled.div`
   width: ${`${window.innerWidth / 3}px`};
@@ -30,6 +31,10 @@ const NoteNameContainer = styled.div`
   transition-property: all;
   cursor: pointer;
   border-radius: 4px;
+
+  &:hover {
+    padding-left: 12px;
+  }
 `;
 
 const Divider = styled.div`
@@ -40,9 +45,21 @@ export default observer(() => {
   const graphState = useContext(GraphStateContext);
   const editorState = useContext(EditorStateContext);
 
+  const [currentNode, setCurrentNode] = useState<NodeType | null>(null);
+
+  useEffect(() => {
+    if (editorState.currentFile !== null) {
+      setCurrentNode(
+        graphState.data.nodes.filter(
+          (node) => node.payload.fileName === editorState.currentFile
+        )[0]
+      );
+    }
+  }, [editorState.currentFile]);
+
   return (
     <SidebarWrapper>
-      {editorState.currentFile !== null && (
+      {currentNode !== null && (
         <>
           <Popup
             trigger={
@@ -53,10 +70,6 @@ export default observer(() => {
             modal
           >
             {(close: () => {}) => {
-              const current = graphState.data.nodes.filter(
-                (node) => node.payload.fileName === editorState.currentFile
-              )[0];
-
               return (
                 <ModalContainer>
                   <h3>Select the nodes to connect to</h3>
@@ -74,12 +87,12 @@ export default observer(() => {
                       .map((node, i) => (
                         <Checkbox
                           name={node.title}
-                          value={graphState.hasEdge(current.id, node.id)}
+                          value={graphState.hasEdge(currentNode.id, node.id)}
                           onChanged={(e) => {
                             if (e) {
-                              graphState.addEdge(current.id, node.id);
+                              graphState.addEdge(currentNode.id, node.id);
                             } else {
-                              graphState.removeEdge(current.id, node.id);
+                              graphState.removeEdge(currentNode.id, node.id);
                             }
                           }}
                           key={`modal___connections___${i}`}
@@ -99,6 +112,19 @@ export default observer(() => {
             }}
           </Popup>
           <Divider />
+          {graphState.data.nodes
+            .filter((node) => node.payload.fileName !== editorState.currentFile)
+            .filter((node) => graphState.hasEdge(currentNode.id, node.id))
+            .map((node, i) => (
+              <NoteNameContainer
+                key={`connectionbar__nodes__${currentNode.id}__${i}`}
+                onClick={(e) => {
+                  editorState.loadFile(node.payload.fileName);
+                }}
+              >
+                {node.title}
+              </NoteNameContainer>
+            ))}
         </>
       )}
     </SidebarWrapper>

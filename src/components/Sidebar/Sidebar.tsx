@@ -21,6 +21,10 @@ const NoteNameContainer = styled.div<{ selected?: boolean }>`
   transition-property: all;
   cursor: pointer;
   border-radius: 4px;
+
+  &:hover {
+    padding-left: 12px;
+  }
 `;
 
 const Divider = styled.div`
