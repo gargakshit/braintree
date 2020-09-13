@@ -59,7 +59,7 @@ class EditorState {
       const content = `
       <html>
         <head>
-          <link rel="stylesheet" type="text/css" href="https://rawcdn.githack.com/gargakshit/braintree/6ecb8941a3a3d2a81bc5c60f6ba0ae66d8a3f718/src/styles/export.css" />
+          <link rel="stylesheet" type="text/css" href="https://rawcdn.githack.com/gargakshit/braintree/08a8d4e1f0b6c56d00e7920c60adab1895f6e384/src/styles/export.css" />
           <title>BrainTree | ${this.currentFile.slice(0, -3)}</title>
         </head>
         <h2>BrainTree | ${this.currentFile.slice(0, -3)}</h2>
