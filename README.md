@@ -33,6 +33,9 @@ Braintree uses react, d3, mobx and electron under the hood.
 - Export as HTML
 
 ---
+### Video
+<iframe width="560" height="315" src="https://www.youtube.com/embed/REEgwKo5PtU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+---
 
 ### Screenshots
 
