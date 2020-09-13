@@ -20,6 +20,8 @@ const ModalContainer = observer(styled.div`
   background-color: rgba(236, 236, 236, 0.95);
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
     0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
 `);
 
 const NoteNameContainer = styled.div`
@@ -75,8 +77,9 @@ export default observer(() => {
                   <h3>Select the nodes to connect to</h3>
                   <div
                     style={{
-                      height: `${window.innerHeight / 2 - 92}px`,
+                      // height: `${window.innerHeight / 2 - 92}px`,
                       overflow: "scroll",
+                      height: "100%",
                     }}
                   >
                     {graphState.data.nodes
