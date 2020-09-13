@@ -34,6 +34,16 @@ Braintree uses react, d3, mobx and electron under the hood.
 
 ---
 
+### Screenshots
+
+<img src="./screenshots/connections.png" width="540" />
+<img src="./screenshots/math.png" width="540" />
+<img src="./screenshots/tables.png" width="540" />
+<img src="./screenshots/rich_text.png" width="540" />
+<img src="./screenshots/code_blocks.png" width="540" />
+
+---
+
 ### Building
 
 See [BUILDING.md](./BUILDING.md)
