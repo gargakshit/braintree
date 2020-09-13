@@ -63,6 +63,7 @@ class EditorState {
           <link rel="stylesheet" href="https://raw.githubusercontent.com/gargakshit/braintree/develop/src/styles/export.css" />
           <title>BrainTree | ${this.currentFile.slice(0, -3)}</title>
         </head>
+        <h2>BrainTree | ${this.currentFile.slice(0, -3)}</h2>
         <body>${this.currentHtml}</body>
       </html>`;
 
