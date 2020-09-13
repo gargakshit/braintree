@@ -75,7 +75,7 @@ export default observer(() => {
                   <h3>Select the nodes to connect to</h3>
                   <div
                     style={{
-                      height: `${window.innerHeight / 2 - 48}px`,
+                      height: `${window.innerHeight / 2 - 54}px`,
                       overflow: "scroll",
                     }}
                   >
