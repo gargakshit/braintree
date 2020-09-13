@@ -31,6 +31,10 @@ const Divider = styled.div`
   margin-top: 16px;
 `;
 
+const Spacer = styled.div`
+  margin-top: 156px;
+`;
+
 export default observer(() => {
   const dialogState = useContext(DialogStateContext);
   const editorState = useContext(EditorStateContext);
@@ -57,6 +61,7 @@ export default observer(() => {
           {node.title}
         </NoteNameContainer>
       ))}
+      <Spacer />
     </SidebarWrapper>
   );
 });

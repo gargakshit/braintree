@@ -10,6 +10,7 @@ import rehypePrism from "@mapbox/rehype-prism";
 import stringify from "rehype-stringify";
 import prettier from "prettier/standalone";
 import prettierMarkdown from "prettier/parser-markdown";
+import prettierHtml from "prettier/parser-html";
 
 import { readFile, writeFile } from "../utils/path";
 
@@ -53,14 +54,36 @@ class EditorState {
     this.debounceAndSave();
   }
 
-  @action
+  async exportAsHtml() {
+    if (this.currentFile !== null) {
+      const content = `
+      <html>
+        <head>
+          <link rel="stylesheet" href="" />
+          <link rel="stylesheet" href="https://raw.githubusercontent.com/gargakshit/braintree/develop/src/styles/export.css" />
+          <title>BrainTree | ${this.currentFile.slice(0, -3)}</title>
+        </head>
+        <body>${this.currentHtml}</body>
+      </html>`;
+
+      await writeFile(
+        `${this.currentFile.slice(0, -3)}.html`,
+        prettier.format(content, {
+          parser: "html",
+          plugins: [prettierHtml],
+        })
+      );
+    } else {
+      throw new Error("Error: Writing to a null file");
+    }
+  }
+
   debounceAndSave() {
     setTimeout(() => {
       this.save();
     }, 500);
   }
 
-  @action
   async save() {
     if (this.currentFile !== null) {
       await writeFile(this.currentFile, this.currentMarkdown);

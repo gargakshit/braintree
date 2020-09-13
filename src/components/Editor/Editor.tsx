@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import Popup from "reactjs-popup";
 import { observer } from "mobx-react";
 import styled from "styled-components";
 
@@ -119,6 +120,41 @@ const FormatButton = styled.button`
   }
 `;
 
+const ExportButton = styled.button`
+  position: absolute;
+  bottom: 56px;
+  left: 12px;
+  z-index: 2;
+  width: 184px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  background-color: #121212;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.64px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  transition-duration: 500ms;
+  transition-property: all;
+  cursor: pointer;
+  &:hover {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    transform: scale(1.05);
+  }
+`;
+
+const PopupWrapper = styled.div`
+  background-color: #f0f0f0;
+  color: #121212;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+`;
+
 export default observer(() => {
   const editorState = useContext(EditorStateContext);
 
@@ -138,6 +174,18 @@ export default observer(() => {
           >
             Prettify Markdown
           </FormatButton>
+          <Popup
+            trigger={<ExportButton>Export as HTML</ExportButton>}
+            position="right center"
+            onOpen={() => {
+              editorState.exportAsHtml();
+            }}
+          >
+            <PopupWrapper>
+              Exported to Documents/BrainTree/
+              {editorState.currentFile.slice(0, -3)}.html
+            </PopupWrapper>
+          </Popup>
           <EditorTextArea
             placeholder="# Add some markdown here"
             value={editorState.currentMarkdown}
