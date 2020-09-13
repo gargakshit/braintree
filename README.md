@@ -45,6 +45,12 @@ Braintree uses react, d3, mobx and electron under the hood.
 
 ---
 
+### Demo Video
+
+Please click [here](https://www.youtube.com/watch?v=M7eG8c2Pe9M) for the demo video
+
+---
+
 ### Current Status and future plans
 
 The project is fully functional, but is in beta.
