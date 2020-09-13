@@ -3,13 +3,34 @@
   "version": "0.1.0",
   "private": true,
   "homepage": "./",
-  "main": "electron.js",
+  "main": "public/electron.js",
+  "author": {
+    "email": "me@akshit.tech",
+    "name": "BrainTree",
+    "url": "https://github.com/gargakshit/braintree"
+  },
+  "build": {
+    "appId": "tech.akshit.braintree",
+    "productName": "BrainTree",
+    "copyright": "Copyright © 2020 Akshit Garg",
+    "mac": {
+      "category": "public.app-category.utilities"
+    },
+    "files": [
+      "build/**/*",
+      "node_modules/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    }
+  },
   "scripts": {
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject",
-    "electron-dev": "concurrently \"cross-env BROWSER=none yarn start\" \"wait-on http://localhost:3000 && electron .\""
+    "electron-dev": "concurrently \"cross-env BROWSER=none yarn start\" \"wait-on http://localhost:3000 && electron .\"",
+    "electron-pack": "yarn build && electron-builder -m"
   },
   "dependencies": {
     "@craco/craco": "^5.6.4",
@@ -53,6 +74,7 @@
     "concurrently": "^5.3.0",
     "cross-env": "^7.0.2",
     "electron": "^10.1.1",
+    "electron-builder": "^22.8.0",
     "electron-is-dev": "^1.2.0",
     "typescript": "~3.7.2",
     "wait-on": "^5.2.0"
