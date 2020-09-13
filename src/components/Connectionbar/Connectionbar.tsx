@@ -64,7 +64,7 @@ export default observer(() => {
           <Popup
             trigger={
               <Button disabled={editorState.currentFile === null}>
-                Modify Connections
+                Edit Connections
               </Button>
             }
             modal
