@@ -44,6 +44,13 @@ Braintree uses react, d3, mobx and electron under the hood.
 
 ---
 
+### Current Status and future plans
+
+The project is fully functional, but is in beta.
+We will continue to maintain this project after the hackathon ends.
+
+---
+
 ### Building
 
 See [BUILDING.md](./BUILDING.md)
