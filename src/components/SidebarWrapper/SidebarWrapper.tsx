@@ -7,5 +7,5 @@ export default styled.div`
   padding-bottom: 24px;
   padding-left: 24px;
   padding-right: 24px;
-  -webkit-app-region: drag;
+  -webkit-app-region: ${process.platform === "darwin" ? "drag" : "no-drag"};
 `;
