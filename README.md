@@ -51,6 +51,12 @@ Please click [here](https://www.youtube.com/watch?v=M7eG8c2Pe9M) for the demo vi
 
 ---
 
+### Landing Page
+
+Please click [here](https://braintree.akshit.tech) for the landing page.
+
+---
+
 ### Current Status and future plans
 
 The project is fully functional, but is in beta.
