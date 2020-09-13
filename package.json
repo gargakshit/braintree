@@ -14,14 +14,25 @@
     "productName": "BrainTree",
     "copyright": "Copyright © 2020 Akshit Garg",
     "mac": {
-      "category": "public.app-category.utilities"
+      "category": "public.app-category.utilities",
+      "icon": "build/braintree.icns"
+    },
+    "win": {
+      "icon": "build/braintree.ico",
+      "target": [
+        {
+          "target": "msi",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
     },
     "files": [
-      "build/**/*",
-      "node_modules/**/*"
+      "build/**/*"
     ],
     "directories": {
-      "buildResources": "assets"
+      "buildResources": "build"
     }
   },
   "scripts": {
@@ -30,7 +41,8 @@
     "test": "craco test",
     "eject": "react-scripts eject",
     "electron-dev": "concurrently \"cross-env BROWSER=none yarn start\" \"wait-on http://localhost:3000 && electron .\"",
-    "electron-pack": "yarn build && electron-builder -mw"
+    "electron-pack-win": "yarn build && electron-builder -w",
+    "electron-pack-mac": "yarn build && electron-builder -m"
   },
   "dependencies": {
     "@craco/craco": "^5.6.4",
