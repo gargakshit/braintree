@@ -2,7 +2,7 @@
 
 ### Your notes, your way
 
-<a href="https://fossunited.org"><img src="http://fossunited.org/files/github-badge.svg" alt="Supported by FOSS United" /></a>
+<a href="https://fossunited.org"><img src="https://fossunited.org/files/fossunited-badge.svg" alt="Supported by FOSS United" /></a>
 
 ---
 
