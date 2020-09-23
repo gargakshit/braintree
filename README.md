@@ -2,6 +2,8 @@
 
 ### Your notes, your way
 
+<a href="https://fossunited.org"><img src="http://fossunited.org/files/github-badge.svg" alt="Supported by FOSS United" /></a>
+
 ---
 
 Braintree is a new type of note taking app which takes all your notes, and aligns them in a graph as if it were your second brain.
