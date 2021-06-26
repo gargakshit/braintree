@@ -14,6 +14,8 @@ The only limits are your imagination.
 
 Braintree uses react, d3, mobx and electron under the hood.
 
+**Note:** The project is stalled for now
+
 ---
 
 ### Why BrainTree?
