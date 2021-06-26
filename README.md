@@ -64,7 +64,9 @@ Please click [here](https://braintree.akshit.tech) for the landing page.
 ### Current Status and future plans
 
 The project is fully functional, but is in beta.
-We will continue to maintain this project after the hackathon ends.
+~~We will continue to maintain this project after the hackathon ends.~~
+
+The project is currently unmaintained due to the lack of time and incentive. Feel free to fork it!
 
 ---
 
